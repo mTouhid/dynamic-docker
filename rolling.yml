@@ -1,0 +1,12 @@
+- name: Test a rolling command playbook
+  hosts: all:!k8s_*
+  serial: 3
+  tasks:
+    - name: Copy files
+      ansible.builtin.command: sleep 1
+      register: my_output # <- Registers the command output.
+      changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
+    - name: Configure the web server
+      ansible.builtin.command: sleep 1
+      register: my_output # <- Registers the command output.
+      changed_when: my_output.rc != 0 # <- Uses the return code to define when the task has changed.
