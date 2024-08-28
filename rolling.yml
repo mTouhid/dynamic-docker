@@ -1,5 +1,5 @@
 - name: Test a rolling command playbook
-  hosts: all:!k8s_*
+  hosts: all
   serial: 3
   tasks:
     - name: Copy files
